@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHL Properties | Luxury Real Estate & Construction</title>
+    <meta name="description" content="BHL Properties offers premium real estate solutions and construction services in Nigeria. Discover luxury living today.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #0A0A0A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .preloader-logo {
+            height: 80px;
+            margin-bottom: 30px;
+            filter: brightness(1.2);
+        }
+
+        .preloader-bar {
+            width: 150px;
+            height: 2px;
+            background: rgba(250, 204, 126, 0.1);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preloader-progress {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #facc7e;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 180px;
+            padding-bottom: 150px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out, transform 10s linear;
+            transform: scale(1.1);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-content {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            max-width: 550px;
+            margin-bottom: 45px;
+            letter-spacing: 0.5px;
+            line-height: 1.8;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        /* Specialized Sections */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr 1fr 1.5fr;
+            gap: 60px;
+        }
+
+        .footer-brand p {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .footer-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-gold);
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 12px 15px;
+            color: white;
+            flex: 1;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: var(--primary-gold);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: black;
+            transition: var(--transition-smooth);
+        }
+
+        .newsletter-form button:hover {
+            background: white;
+        }
+    
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .property-grid-alt {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 50px;
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 25%;
+            height: 50%;
+            width: 1px;
+            background: linear-gradient(transparent, var(--glass-border), transparent);
+        }
+
+        /* Mobile specific adjustments are handled in style.css */
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="logo.png" alt="BHL Logo" class="preloader-logo">
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="BHL Logo">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="nav-btns">
+                        <button class="btn-premium btn-solid">Book Consultation</button>
+                    </div>
+                    <div class="menu-toggle" id="menuToggle" style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary-gold); margin-left: 20px;">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--bg-black); z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s ease; padding: 40px;">
+        <div class="close-menu" id="closeMenu" style="position: absolute; top: 30px; right: 30px; font-size: 2rem; color: var(--primary-gold); cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul style="text-align: center; display: flex; flex-direction: column; gap: 30px; font-size: 1.5rem;">
+            <li><a href="index.html" class="mobile-link">Home</a></li>
+            <li><a href="about.html" class="mobile-link">About</a></li>
+            <li><a href="properties.html" class="mobile-link">Properties</a></li>
+            <li><a href="contact.html" class="mobile-link">Contact</a></li>
+        </ul>
+        <button class="btn-premium btn-solid" style="margin-top: 50px;">Book Consultation</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('images/BUCKCREST%20HAVENS%20EMERALD%20ESTATE/3%20BEDROOM%20SEMI%20DETACHED%20DUPLEX%20%20(6).jpg');"></div>
+            <div class="hero-slide" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('images/BUCKCREST%20HAVENS%20PERIDOT%20ESTATE/IMG-20241007-WA0005.jpg');"></div>
+            <div class="hero-slide" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('images/BUCKCREST%20HAVENS%20PERIDOT%20ESTATE/IMG-20241007-WA0006.jpg');"></div>
+        </div>
+        <div class="container" style="position: relative; z-index: 5;">
+            <div class="hero-content">
+                <h1>Redefining <br><span class="text-gold">Urban Horizons</span></h1>
+                <p>Buckcrest Haven's Limited is a premier real estate and construction firm committed to delivering architectural masterpieces and sustainable investment opportunities across Nigeria's prime landscapes.</p>
+                <div class="hero-btns">
+                    <button class="btn-premium btn-solid">Explore Portfolio</button>
+                    <button class="btn-premium">Our Expertise</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section (White Background) -->
+    <section class="section-padding section-white">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="reveal">
+                    <h5 class="text-gold" style="margin-bottom: 20px; font-weight: 600;">SINCE 2012</h5>
+                    <h2 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 30px;">Architecture <br>With <span class="text-gold">Purpose</span></h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 30px;">At BHL Properties, we don't just build structures; we create environments where luxury meets functionality. Our multidisciplinary team combines innovative design with rigorous engineering to deliver projects that redefine modern living.</p>
+                    <div style="display: flex; gap: 40px; margin-top: 50px;">
+                        <div>
+                            <h4 style="font-size: 2rem;">25+</h4>
+                            <p style="font-size: 0.8rem; text-transform: uppercase;">Estates Developed</p>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 2rem;">1k+</h4>
+                            <p style="font-size: 0.8rem; text-transform: uppercase;">Homes Delivered</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal image-reveal-wrapper">
+                    <img src="images/BUCKCREST%20HAVENS%20PERIDOT%20ESTATE/IMG-20241007-WA0004.jpg" alt="BHL Design" style="width: 100%; height: 550px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Estates Section (Milk Theme) -->
+    <section class="section-padding section-milk">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 3rem;">Our <span class="text-gold">Estates</span></h2>
+                <p>Discover our master-planned communities across prime locations.</p>
+            </div>
+            <div class="property-grid-alt">
+                <!-- Emerald Card -->
+                <div class="estate-card-premium reveal">
+                    <div class="estate-img-wrapper">
+                        <img src="images/BUCKCREST HAVENS EMERALD ESTATE/4 BEDROOM DETACHED DUPLEX  (1).jpg" alt="Emerald Estate">
+                    </div>
+                    <div class="estate-info-premium">
+                        <span class="estate-tag">LUGBE</span>
+                        <h3 class="estate-title-dark">Emerald Estate</h3>
+                        <p class="estate-desc-dark">A sanctuary of modern luxury, offering premium 4-bedroom detached duplexes in a gated, secure community.</p>
+                        <a href="properties.html?estate=Emerald" class="estate-link-gold">Explore Estate <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Peridot Card -->
+                <div class="estate-card-premium reveal">
+                    <div class="estate-img-wrapper">
+                        <img src="images/BUCKCREST HAVENS PERIDOT ESTATE/IMG-20241007-WA0007.jpg" alt="Peridot Estate">
+                    </div>
+                    <div class="estate-info-premium">
+                        <span class="estate-tag">KUJE</span>
+                        <h3 class="estate-title-dark">Peridot Estate</h3>
+                        <p class="estate-desc-dark">Experience contemporary urban living with our state-of-the-art apartment complexes designed for comfort and prestige.</p>
+                        <a href="properties.html?estate=Peridot" class="estate-link-gold">Explore Estate <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Dawaki Card -->
+                <div class="estate-card-premium reveal">
+                    <div class="estate-img-wrapper">
+                        <img src="images/dAWAKI/4 BED FULLY.jpg" alt="Dawaki Heights">
+                    </div>
+                    <div class="estate-info-premium">
+                        <span class="estate-tag">DAWAKI</span>
+                        <h3 class="estate-title-dark">Dawaki Heights</h3>
+                        <p class="estate-desc-dark">Luxury living redefined with panoramic views and architectural masterpieces nestled in the serene heights of Dawaki.</p>
+                        <a href="properties.html?estate=Dawaki" class="estate-link-gold">Explore Estate <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties (Dark) -->
+    <section class="section-padding" style="background: var(--bg-black);">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 3rem;">Featured <span class="text-gold">Properties</span></h2>
+                <p style="color: var(--text-gray);">Invest in properties that offer guaranteed ROI and unmatched luxury.</p>
+            </div>
+            <div class="property-grid-alt">
+                <div class="glass-card reveal" style="padding: 0; overflow: hidden;">
+                    <div class="image-reveal-wrapper" style="border-radius: 0; height: 300px;">
+                        <img src="images/BUCKCREST HAVENS EMERALD ESTATE/4 BEDROOM DETACHED DUPLEX  (1).jpg" alt="Emerald Estate" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="padding: 30px;">
+                        <span class="text-gold" style="font-size: 0.8rem; font-weight: 600;">LUGBE, ABUJA</span>
+                        <h3 style="margin: 10px 0;">Emerald Estate</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px;">Premium 4-Bedroom Detached Duplexes in a gated, secure community.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 1.2rem;">₦95M</span>
+                            <a href="properties.html" class="text-gold" style="font-size: 0.8rem; font-weight: 600;">VIEW DETAILS →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal" style="padding: 0; overflow: hidden;">
+                    <div class="image-reveal-wrapper" style="border-radius: 0; height: 300px;">
+                        <img src="images/BUCKCREST HAVENS PERIDOT ESTATE/IMG-20241007-WA0007.jpg" alt="Peridot Estate" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="padding: 30px;">
+                        <span class="text-gold" style="font-size: 0.8rem; font-weight: 600;">KUJE, ABUJA</span>
+                        <h3 style="margin: 10px 0;">Peridot Estate</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px;">Modern lifestyle apartments with state-of-the-art facilities.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 1.2rem;">₦35M</span>
+                            <a href="properties.html" class="text-gold" style="font-size: 0.8rem; font-weight: 600;">VIEW DETAILS →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal" style="padding: 0; overflow: hidden;">
+                    <div class="image-reveal-wrapper" style="border-radius: 0; height: 300px;">
+                        <img src="images/dAWAKI/4 BED FULLY.jpg" alt="Dawaki Estate" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="padding: 30px;">
+                        <span class="text-gold" style="font-size: 0.8rem; font-weight: 600;">DAWAKI, ABUJA</span>
+                        <h3 style="margin: 10px 0;">Dawaki Heights</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px;">Luxury 4-Bedroom fully detached homes with panoramic hill views.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 1.2rem;">₦120M</span>
+                            <a href="properties.html" class="text-gold" style="font-size: 0.8rem; font-weight: 600;">VIEW DETAILS →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section (White Background) -->
+    <section class="section-padding section-white">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 3rem;">Core <span class="text-gold">Expertise</span></h2>
+                <p>Comprehensive solutions from land acquisition to final handover.</p>
+            </div>
+            <div class="property-grid-alt">
+                <div class="feature-card reveal" style="background: white;">
+                    <i class="fas fa-hard-hat expertise-icon text-gold"></i>
+                    <h3>Construction</h3>
+                    <p>Utilizing Grade-A materials and modern engineering techniques to ensure structural integrity and longevity.</p>
+                </div>
+                <div class="feature-card reveal" style="background: white;">
+                    <i class="fas fa-pencil-ruler expertise-icon text-gold"></i>
+                    <h3>Architecture</h3>
+                    <p>Cinematic designs that balance aesthetic beauty with practical, sustainable living spaces.</p>
+                </div>
+                <div class="feature-card reveal" style="background: white;">
+                    <i class="fas fa-chart-line expertise-icon text-gold"></i>
+                    <h3>Property Dev</h3>
+                    <p>Transforming vast landscapes into master-planned communities that offer value to both residents and investors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section (Dark) -->
+    <section class="section-padding" style="background: var(--bg-dark-gray);">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <h3 class="stat-number text-gold" data-target="150" style="font-size: 3.5rem; margin-bottom: 10px; font-weight: 700;">0</h3>
+                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--text-gray);">Projects Completed</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 class="stat-number text-gold" data-target="12" style="font-size: 3.5rem; margin-bottom: 10px; font-weight: 700;">0</h3>
+                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--text-gray);">Years Experience</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 class="stat-number text-gold" data-target="500" style="font-size: 3.5rem; margin-bottom: 10px; font-weight: 700;">0</h3>
+                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--text-gray);">Satisfied Investors</p>
+                </div>
+                <div class="stat-item reveal">
+                    <h3 class="stat-number text-gold" data-target="25" style="font-size: 3.5rem; margin-bottom: 10px; font-weight: 700;">0</h3>
+                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--text-gray);">Ongoing Estates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process (White Background) -->
+    <section class="section-padding section-white">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="reveal image-reveal-wrapper">
+                    <img src="images/BUCKCREST%20HAVENS%20EMERALD%20ESTATE/4%20BEDROOM%20DETACHED%20DUPLEX%20%20(1).jpg" alt="Construction Site" style="width: 100%; height: 600px; object-fit: cover;">
+                </div>
+                <div class="reveal">
+                    <h2 style="font-size: 3rem; margin-bottom: 50px;">From Blueprint <br>To <span class="text-gold">Reality</span></h2>
+                    <div class="process-step reveal" data-step="01" style="margin-bottom: 40px;">
+                        <h3>Strategic Planning</h3>
+                        <p>We begin with rigorous site analysis and conceptual design to maximize land potential.</p>
+                    </div>
+                    <div class="process-step reveal" data-step="02" style="margin-bottom: 40px;">
+                        <h3>Precision Build</h3>
+                        <p>Our construction phase is defined by strict quality control and timeline management.</p>
+                    </div>
+                    <div class="process-step reveal" data-step="03">
+                        <h3>Handover & Support</h3>
+                        <p>We ensure a seamless transition for homeowners, backed by our comprehensive maintenance support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section (Dark) -->
+    <section class="section-padding" style="background: var(--bg-black);">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 3rem;">Client <span class="text-gold">Voices</span></h2>
+                <p style="color: var(--text-gray);">Hear from the families and investors who have found their future with BHL.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="glass-card reveal">
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">BHL Properties delivered my dream home exactly as promised. The attention to detail in the architecture and the transparency throughout the process was remarkable.</p>
+                    <div class="testimonial-user">
+                        <img src="images/testimonial_1.png" alt="Dr. Adebayo" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Dr. Adebayo O.</h4>
+                            <p>Emerald Estate Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal">
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">As an investor, I've worked with many firms, but BHL's ROI and site management are unmatched. Their Peridot Estate has already exceeded my expectations in value.</p>
+                    <div class="testimonial-user">
+                        <img src="images/testimonial_2.png" alt="Sarah Johnson" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Strategic Investor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal">
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">The structural integrity and modern aesthetic of BHL's developments set them apart. I'm impressed by their commitment to sustainable urban development.</p>
+                    <div class="testimonial-user">
+                        <img src="images/testimonial_3.png" alt="Engr. Musa" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Engr. Musa A.</h4>
+                            <p>Dawaki Heights Resident</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding" style="background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('images/BUCKCREST%20HAVENS%20EMERALD%20ESTATE/4%20BEDROOM%20DETACHED%20DUPLEX%20%20(3).jpg') no-repeat center center/cover; background-attachment: fixed;">
+        <div class="container">
+            <div class="reveal" style="text-align: center;">
+                <h2 style="font-size: 3.5rem; margin-bottom: 30px;">Ready to Start Your <br><span class="text-gold">Luxury Journey?</span></h2>
+                <p style="max-width: 700px; margin: 0 auto 50px; font-size: 1.1rem; color: var(--text-gray);">Whether you're looking for your dream home or a high-yielding investment, BHL Properties is your trusted partner.</p>
+                <div class="hero-btns" style="justify-content: center;">
+                    <button class="btn-premium btn-solid">Book a Site Visit</button>
+                    <button class="btn-premium">Download Brochure</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section-padding" style="border-top: 1px solid var(--glass-border); padding-bottom: 40px;">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="BHL Logo" style="height: 60px;">
+                    <p>Buckcrest Haven's Limited is a premier real estate and construction firm dedicated to providing luxurious and sustainable housing solutions across Nigeria.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="text-gold"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gold"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gold"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="properties.html">Our Properties</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--primary-gold);"></i> Lagos, Nigeria</a></li>
+                        <li><a href="tel:+2341234567890"><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--primary-gold);"></i> +234 123 456 7890</a></li>
+                        <li><a href="mailto:info@bhlproperties.com"><i class="fas fa-envelope" style="margin-right: 10px; color: var(--primary-gold);"></i> info@bhlproperties.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Subscribe to receive the latest investment opportunities.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Buckcrest Haven's Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2341234567890?text=Hello%20BHL%20Properties,%20I'm%20interested%20in%20your%20real%20estate%20solutions." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

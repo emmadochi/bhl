@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | BHL Properties</title>
+    <meta name="description" content="Contact BHL Properties for inquiries, property viewings, and real estate consultations in Nigeria.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #0A0A0A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .preloader-logo {
+            height: 80px;
+            margin-bottom: 30px;
+            filter: brightness(1.2);
+        }
+
+        .preloader-bar {
+            width: 150px;
+            height: 2px;
+            background: rgba(250, 204, 126, 0.1);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preloader-progress {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #facc7e;
+        }
+
+        .hero-inner {
+            min-height: 60vh;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/BUCKCREST%20HAVENS%20PERIDOT%20ESTATE/IMG-20241007-WA0006.jpg') no-repeat center center/cover;
+            text-align: center;
+        }
+
+        .hero-inner h1 {
+            font-size: clamp(3rem, 8vw, 4rem);
+            width: 100%;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+        }
+
+        .contact-info-item {
+            padding: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-info-item i {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 25px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 15px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            border-radius: 5px;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--primary-gold);
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* Footer Styles */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr 1fr 1.5fr;
+            gap: 60px;
+        }
+
+        .footer-brand p {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .footer-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-gold);
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 12px 15px;
+            color: white;
+            flex: 1;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: var(--primary-gold);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: black;
+            transition: var(--transition-smooth);
+        }
+
+        .newsletter-form button:hover {
+            background: white;
+        }
+
+        /* Mobile specific adjustments are handled in style.css */
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="logo.png" alt="BHL Logo" class="preloader-logo">
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="BHL Logo">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="nav-btns">
+                        <button class="btn-premium btn-solid">Book Consultation</button>
+                    </div>
+                    <div class="menu-toggle" id="menuToggle" style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary-gold); margin-left: 20px;">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--bg-black); z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s ease; padding: 40px;">
+        <div class="close-menu" id="closeMenu" style="position: absolute; top: 30px; right: 30px; font-size: 2rem; color: var(--primary-gold); cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul style="text-align: center; display: flex; flex-direction: column; gap: 30px; font-size: 1.5rem;">
+            <li><a href="index.html" class="mobile-link">Home</a></li>
+            <li><a href="about.html" class="mobile-link">About</a></li>
+            <li><a href="properties.html" class="mobile-link">Properties</a></li>
+            <li><a href="contact.html" class="mobile-link">Contact</a></li>
+        </ul>
+        <button class="btn-premium btn-solid" style="margin-top: 50px;">Book Consultation</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-inner">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="reveal">Contact <span class="text-gold">Us</span></h1>
+                <p class="reveal">Let's discuss your next dream project or investment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="glass-card contact-info-item reveal">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p style="color: var(--text-gray);">+234 123 456 7890</p>
+                        </div>
+                    </div>
+                    <div class="glass-card contact-info-item reveal">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p style="color: var(--text-gray);">info@bhlproperties.com</p>
+                        </div>
+                    </div>
+                    <div class="glass-card contact-info-item reveal">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Visit Us</h4>
+                            <p style="color: var(--text-gray);">Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card reveal" style="padding: 60px;">
+                    <form class="contact-form">
+                        <div class="contact-form-grid">
+                            <div class="form-group">
+                                <input type="text" placeholder="Full Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn-premium btn-solid" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Placeholder -->
+    <section class="reveal" style="height: 400px; background: var(--bg-dark-gray); display: flex; align-items: center; justify-content: center; border-top: 1px solid var(--glass-border);">
+        <div style="text-align: center;">
+            <i class="fas fa-map text-gold" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h3>Interactive Map Integration</h3>
+            <p style="color: var(--text-gray);">[Google Maps API will be loaded here]</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section-padding" style="border-top: 1px solid var(--glass-border); padding-bottom: 40px;">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="BHL Logo" style="height: 60px;">
+                    <p>Buckcrest Haven's Limited is a premier real estate and construction firm dedicated to providing luxurious and sustainable housing solutions across Nigeria.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="text-gold"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gold"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gold"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="properties.html">Our Properties</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--primary-gold);"></i> Lagos, Nigeria</a></li>
+                        <li><a href="tel:+2341234567890"><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--primary-gold);"></i> +234 123 456 7890</a></li>
+                        <li><a href="mailto:info@bhlproperties.com"><i class="fas fa-envelope" style="margin-right: 10px; color: var(--primary-gold);"></i> info@bhlproperties.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Subscribe to receive the latest investment opportunities.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Buckcrest Haven's Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2341234567890?text=Hello%20BHL%20Properties,%20I'm%20interested%20in%20your%20real%20estate%20solutions." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

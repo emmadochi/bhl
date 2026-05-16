@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-gold: #facc7e;
+    --gold-glow: rgba(250, 204, 126, 0.3);
+    --bg-black: #0A0A0A;
+    --bg-dark-gray: #141414;
+    --text-white: #FFFFFF;
+    --text-black: #1A1A1A;
+    --text-gray: #A0A0A0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --section-white: #F9F9F9;
+    --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-smooth);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-gold);
+    border-radius: 10px;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section-padding {
+    padding: 160px 0;
+    overflow-x: hidden;
+}
+
+.section-white {
+    background-color: var(--section-white);
+    color: var(--text-black);
+}
+
+.section-white h1, .section-white h2, .section-white h3 {
+    color: var(--text-black);
+}
+
+.section-white p {
+    color: #555555;
+}
+
+.section-white .glass-card {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.section-white .glass-card:hover {
+    background: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.text-gold { color: var(--primary-gold); }
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    border-color: var(--primary-gold);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+}
+
+.btn-premium {
+    position: relative;
+    padding: 15px 35px;
+    background: transparent;
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.btn-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gold);
+    transition: var(--transition-smooth);
+    z-index: -1;
+}
+
+.btn-premium:hover {
+    color: var(--bg-black);
+}
+
+.btn-premium:hover::before {
+    left: 0;
+}
+
+.btn-solid {
+    background: var(--primary-gold);
+    color: var(--bg-black);
+    border: 1px solid var(--primary-gold);
+}
+
+.btn-solid:hover {
+    background: transparent;
+    color: var(--primary-gold);
+}
+
+.image-reveal-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.image-reveal-wrapper img {
+    transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.image-reveal-wrapper:hover img {
+    transform: scale(1.1);
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: var(--transition-smooth);
+}
+
+nav.scrolled {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    filter: brightness(1.2);
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links li a {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-gold);
+    transition: var(--transition-smooth);
+}
+
+.nav-links li a:hover {
+    color: var(--primary-gold);
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s ease-out;
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--primary-gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.1s ease-out;
+}
+
+/* Testimonials */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.testimonial-card {
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-quote {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-style: italic;
+    color: var(--text-white);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.testimonial-quote::before {
+    content: '“';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-size: 4rem;
+    color: var(--primary-gold);
+    opacity: 0.2;
+    font-family: 'Outfit', sans-serif;
+}
+
+.testimonial-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-gold);
+    object-fit: cover;
+}
+
+.testimonial-info h4 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: var(--text-white);
+}
+
+.testimonial-info p {
+    font-size: 0.8rem;
+    color: var(--primary-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.star-rating {
+    margin-bottom: 20px;
+    color: var(--primary-gold);
+    font-size: 0.9rem;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-5px);
+    background-color: #128c7e;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    color: white;
+}
+
+@keyframes pulse-whatsapp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Milk & Gold Estates Design */
+.section-milk {
+    background-color: #F8F5F2;
+    color: #1A1A1A;
+}
+
+.section-milk h2 {
+    color: #1A1A1A;
+}
+
+.section-milk p {
+    color: #666;
+}
+
+.estate-card-premium {
+    background: white;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.estate-card-premium:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+
+.estate-img-wrapper {
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.estate-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.5s ease;
+}
+
+.estate-card-premium:hover .estate-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.estate-info-premium {
+    padding: 40px;
+    text-align: left;
+}
+
+.estate-tag {
+    display: inline-block;
+    padding: 5px 15px;
+    background: #1A1A1A;
+    color: var(--primary-gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.estate-title-dark {
+    font-size: 1.5rem;
+    color: #1A1A1A;
+    margin-bottom: 15px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.estate-desc-dark {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.estate-link-gold {
+    color: var(--primary-gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-smooth);
+}
+
+.estate-link-gold:hover {
+    gap: 15px;
+    color: #1A1A1A;
+}
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: var(--transition-smooth);
+    will-change: transform, opacity;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* --- RESPONSIVE DESIGN REFINEMENTS --- */
+
+@media (max-width: 1200px) {
+    .container { padding: 0 40px; }
+    .intro-grid { gap: 40px; }
+}
+
+@media (max-width: 991px) {
+    :root {
+        --section-padding: 80px 0;
+    }
+
+    .section-padding {
+        padding: 80px 0;
+    }
+
+    .nav-links, .nav-btns {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: block !important;
+        background: transparent;
+        border: none;
+    }
+
+    .intro-grid, .property-grid, .property-grid-alt, .testimonials-grid, .team-grid, .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px;
+    }
+
+    .intro-grid .reveal.image-reveal-wrapper {
+        order: -1;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        line-height: 1.2;
+    }
+
+    .custom-cursor, .cursor-follower {
+        display: none !important;
+    }
+
+    /* Estate Card Refinements for Mobile */
+    .estate-info-premium {
+        padding: 30px;
+    }
+
+    .estate-title-dark {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    h2 {
+        font-size: 2.2rem !important;
+        line-height: 1.3;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .btn-premium {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+        padding: 20px 0;
+    }
+
+    .stat-item::after {
+        display: none !important;
+    }
+
+    /* Footer Refinements */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+
+    .footer-brand, .footer-links, .newsletter-form {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .newsletter-form {
+        max-width: 100%;
+    }
+
+    .footer-socials {
+        display: flex;
+        gap: 20px;
+        font-size: 1.2rem;
+        margin-top: 25px;
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 60px;
+        padding-top: 30px;
+        border-top: 1px solid var(--glass-border);
+        color: var(--text-gray);
+        font-size: 0.8rem;
+    }
+
+    /* Mobile Menu Enhancement */
+    .mobile-menu ul li a {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
+    }
+
+    /* Additional Page Refinements */
+    .contact-form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .filter-bar {
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    .filter-group select {
+        width: 100%;
+    }
+
+    /* Contact Page Info Items */
+    .contact-info-item {
+        padding: 20px;
+    }
+
+    .glass-card.reveal {
+        padding: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 0 25px;
+    }
+
+    .section-padding {
+        padding: 50px 0;
+    }
+
+    /* Property Card Image Heights on Small Screens */
+    .property-img-container {
+        height: 220px;
+    }
+
+    .estate-img-wrapper {
+        height: 250px;
+    }
+
+    .estate-info-premium {
+        padding: 25px;
+    }
+}
