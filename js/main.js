@@ -1,20 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor
+    // Custom Cursor (Only on Desktop)
     const cursor = document.querySelector('.custom-cursor');
     const follower = document.querySelector('.cursor-follower');
 
-    document.addEventListener('mousemove', (e) => {
-        gsap.to(cursor, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.1
+    if (window.innerWidth > 991 && cursor && follower) {
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+            gsap.to(follower, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.3
+            });
         });
-        gsap.to(follower, {
-            x: e.clientX - 10,
-            y: e.clientY - 10,
-            duration: 0.3
-        });
-    });
+    }
 
     // Navbar Scroll Effect
     const nav = document.querySelector('nav');
@@ -98,7 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, '-=0.8');
 
     // Section Reveal Animations (Enhanced)
-    const reveals = document.querySelectorAll('.reveal');
+    // Filter out .reveal elements that are children of staggered grids to prevent double-animation conflicts
+    const reveals = Array.from(document.querySelectorAll('.reveal')).filter(el => {
+        return !el.closest('.property-grid') && 
+               !el.closest('.property-grid-alt') && 
+               !el.closest('.stats-grid') && 
+               !el.closest('.team-grid') && 
+               !el.closest('.testimonials-grid');
+    });
     
     // Set initial state
     gsap.set(reveals, { opacity: 0, y: 60 });
