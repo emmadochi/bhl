@@ -64,8 +64,19 @@
         }
 
         .hero-inner h1 {
-            font-size: clamp(3rem, 8vw, 4rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .hero-inner h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            .hero-inner p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
         }
 
         .value-card {
@@ -105,6 +116,59 @@
         .team-info {
             padding: 20px;
             text-align: center;
+        }
+
+        .company-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .mission-card {
+            padding: 60px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        /* About Page Mobile Adjustments */
+        @media (max-width: 991px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .mission-card {
+                padding: 40px 30px;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .company-stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Footer Styles */
@@ -185,7 +249,18 @@
             background: white;
         }
 
-        /* Mobile specific adjustments are handled in style.css */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
     </style>
 </head>
 <body>
@@ -235,7 +310,7 @@
         <div class="close-menu" id="closeMenu" style="position: absolute; top: 30px; right: 30px; font-size: 2rem; color: var(--primary-gold); cursor: pointer;">
             <i class="fas fa-times"></i>
         </div>
-        <ul style="text-align: center; display: flex; flex-direction: column; gap: 30px; font-size: 1.5rem;">
+        <ul style="text-align: center; display: flex; flex-direction: column; gap: 30px; font-size: 1.1rem;">
             <li><a href="index.html" class="mobile-link">Home</a></li>
             <li><a href="about.html" class="mobile-link">About</a></li>
             <li><a href="properties.html" class="mobile-link">Properties</a></li>
@@ -264,7 +339,7 @@
                     <p style="margin-bottom: 25px; line-height: 1.8;">Buckcrest Haven's Limited (BHL) is a powerhouse in the Nigerian real estate and construction industry. Since our inception, we have been at the forefront of urban development, transforming blank canvases into thriving, luxury communities that stand the test of time.</p>
                     <p style="margin-bottom: 35px; line-height: 1.8;">Our approach combines the precision of modern engineering with the soul of visionary architecture. We don't just build houses; we curate lifestyles for those who seek the perfect balance between comfort, security, and prestige. With a portfolio spanning across prime locations in Abuja and Lagos, BHL continues to redefine the standards of luxury living.</p>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
+                    <div class="company-stats-grid" style="margin-top: 40px;">
                         <div class="glass-card" style="padding: 25px; background: rgba(0,0,0,0.02);">
                             <h4 style="color: var(--primary-gold); margin-bottom: 10px;">12+ Years</h4>
                             <p style="font-size: 0.85rem;">of industry leadership and project delivery.</p>
@@ -283,12 +358,12 @@
     </section>
     <section class="section-padding">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
-                <div class="glass-card reveal" style="padding: 60px;">
+            <div class="mission-vision-grid">
+                <div class="glass-card reveal mission-card">
                     <h2 class="text-gold" style="margin-bottom: 20px;">Our Mission</h2>
                     <p style="color: var(--text-gray);">To provide sustainable and luxurious housing solutions that exceed client expectations through innovation, quality construction, and exceptional customer service.</p>
                 </div>
-                <div class="glass-card reveal" style="padding: 60px;">
+                <div class="glass-card reveal mission-card">
                     <h2 class="text-gold" style="margin-bottom: 20px;">Our Vision</h2>
                     <p style="color: var(--text-gray);">To be the most trusted real estate and construction firm in Africa, recognized for our commitment to excellence and our contribution to urban development.</p>
                 </div>
@@ -302,7 +377,7 @@
             <div class="reveal" style="text-align: center; margin-bottom: 60px;">
                 <h2>Core <span class="text-gold">Values</span></h2>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+            <div class="values-grid">
                 <div class="value-card reveal">
                     <i class="fas fa-shield-alt text-gold"></i>
                     <h3>Integrity</h3>

@@ -167,6 +167,10 @@ img {
     border: 1px solid var(--primary-gold);
 }
 
+.btn-solid::before {
+    background: var(--bg-black);
+}
+
 .btn-solid:hover {
     background: transparent;
     color: var(--primary-gold);
