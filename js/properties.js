@@ -40,14 +40,14 @@ const properties = [
     },
     {
         id: 4,
-        title: "Kabusa Court",
+        title: "HighLand City",
         location: "Kabusa, Abuja",
-        badge: "KABUSA",
+        badge: "HIGHLAND",
         price: "₦55,000,000",
         beds: 4,
         baths: 4,
         type: "Terrace Duplex",
-        estate: "Kabusa",
+        estate: "HighLand City",
         image: "images/KABUSA PROTOTYPE/TERRACE 1.jpg"
     },
     {
@@ -103,7 +103,7 @@ const properties = [
     },
     {
         id: 9,
-        title: "HighLand City (2 Bed)",
+        title: "Ivory Tower (2 Bed)",
         location: "Kuje, Abuja (Behind Centenary City)",
         badge: "15% DISCOUNT",
         price: "₦3,400,000",
@@ -111,12 +111,12 @@ const properties = [
         baths: 2,
         cars: 1,
         type: "Terrace Duplex",
-        estate: "HighLand City",
-        image: "images/highland_city.png"
+        estate: "Ivory Tower",
+        image: "images/ivory_tower.png"
     },
     {
         id: 10,
-        title: "HighLand City (3 Bed)",
+        title: "Ivory Tower (3 Bed)",
         location: "Kuje, Abuja (Behind Centenary City)",
         badge: "15% DISCOUNT",
         price: "₦4,250,000",
@@ -124,12 +124,12 @@ const properties = [
         baths: 3,
         cars: 2,
         type: "Terrace Duplex",
-        estate: "HighLand City",
-        image: "images/highland_city.png"
+        estate: "Ivory Tower",
+        image: "images/ivory_tower.png"
     },
     {
         id: 11,
-        title: "HighLand City (4 Bed)",
+        title: "Ivory Tower (4 Bed)",
         location: "Kuje, Abuja (Behind Centenary City)",
         badge: "15% DISCOUNT",
         price: "₦5,500,000",
@@ -137,12 +137,12 @@ const properties = [
         baths: 4,
         cars: 3,
         type: "Penthouse Bungalow",
-        estate: "HighLand City",
-        image: "images/highland_city.png"
+        estate: "Ivory Tower",
+        image: "images/ivory_tower.png"
     },
     {
         id: 12,
-        title: "HighLand City (5 Bed)",
+        title: "Ivory Tower (5 Bed)",
         location: "Kuje, Abuja (Behind Centenary City)",
         badge: "15% DISCOUNT",
         price: "₦6,370,000",
@@ -150,8 +150,8 @@ const properties = [
         baths: 5,
         cars: 3,
         type: "Fully Detached Duplex",
-        estate: "HighLand City",
-        image: "images/highland_city.png"
+        estate: "Ivory Tower",
+        image: "images/ivory_tower.png"
     }
 ];
 
