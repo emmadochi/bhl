@@ -40,15 +40,16 @@ const properties = [
     },
     {
         id: 4,
-        title: "HighLand City",
+        title: "HighLand City (5 Bed)",
         location: "Kabusa, Abuja",
         badge: "HIGHLAND",
-        price: "₦55,000,000",
-        beds: 4,
-        baths: 4,
-        type: "Terrace Duplex",
+        price: "₦180,000,000",
+        beds: 5,
+        baths: 6,
+        cars: 3,
+        type: "Fully Detached Duplex",
         estate: "HighLand City",
-        image: "images/KABUSA PROTOTYPE/BLOCK OF FLAT.jpg"
+        image: "images/KABUSA PROTOTYPE/TERRACE 2.jpg"
     },
     {
         id: 5,
@@ -152,6 +153,45 @@ const properties = [
         type: "Fully Detached Duplex",
         estate: "Ivory Tower",
         image: "images/KUJE PROTOTYPE/KUJE PROTOTYPE.png"
+    },
+    {
+        id: 13,
+        title: "HighLand City (4 Bed)",
+        location: "Kabusa, Abuja",
+        badge: "HIGHLAND",
+        price: "₦85,000,000",
+        beds: 4,
+        baths: 5,
+        cars: 2,
+        type: "Semi-Detached Duplex",
+        estate: "HighLand City",
+        image: "images/KABUSA PROTOTYPE/TERRACE 3.jpg"
+    },
+    {
+        id: 14,
+        title: "HighLand City (3 Bed)",
+        location: "Kabusa, Abuja",
+        badge: "HIGHLAND",
+        price: "₦50,000,000",
+        beds: 3,
+        baths: 4,
+        cars: 2,
+        type: "Terrace Duplex",
+        estate: "HighLand City",
+        image: "images/KABUSA PROTOTYPE/TERRACE 1.jpg"
+    },
+    {
+        id: 15,
+        title: "HighLand City (3 Bed Flat)",
+        location: "Kabusa, Abuja",
+        badge: "HIGHLAND",
+        price: "₦40,000,000",
+        beds: 3,
+        baths: 4,
+        cars: 2,
+        type: "Block of Flats",
+        estate: "HighLand City",
+        image: "images/KABUSA PROTOTYPE/BLOCK OF FLAT.jpg"
     }
 ];
 
