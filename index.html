@@ -218,6 +218,28 @@
             grid-template-columns: repeat(4, 1fr);
         }
 
+        .grid-5-cols {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        @media (max-width: 1400px) {
+            .grid-5-cols {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .grid-5-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .grid-5-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 1200px) {
             .grid-4-cols {
                 grid-template-columns: repeat(2, 1fr);
@@ -405,7 +427,7 @@
                 <h2 style="font-size: 3rem;">Our <span class="text-gold">Estates</span></h2>
                 <p>Discover our master-planned communities across prime locations.</p>
             </div>
-            <div class="property-grid-alt grid-4-cols">
+            <div class="property-grid-alt grid-5-cols">
                 <!-- Emerald Card -->
                 <div class="estate-card-premium reveal">
                     <div class="estate-img-wrapper">
@@ -454,6 +476,18 @@
                         <a href="properties.html?estate=Jordan%20Valley" class="estate-link-gold">Explore Estate <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+                <!-- Ivory Tower Card -->
+                <div class="estate-card-premium reveal">
+                    <div class="estate-img-wrapper">
+                        <img src="images/ivory_tower.png" alt="Ivory Tower">
+                    </div>
+                    <div class="estate-info-premium">
+                        <span class="estate-tag">KUJE</span>
+                        <h3 class="estate-title-dark">Ivory Tower</h3>
+                        <p class="estate-desc-dark">A contemporary luxury estate located behind Centenary City, Kuje, featuring terrace duplexes and penthouse bungalows.</p>
+                        <a href="properties.html?estate=Ivory%20Tower" class="estate-link-gold">Explore Estate <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -465,7 +499,7 @@
                 <h2 style="font-size: 3rem;">Featured <span class="text-gold">Properties</span></h2>
                 <p style="color: var(--text-gray);">Invest in properties that offer guaranteed ROI and unmatched luxury.</p>
             </div>
-            <div class="property-grid-alt grid-4-cols">
+            <div class="property-grid-alt grid-5-cols">
                 <div class="glass-card reveal" style="padding: 0; overflow: hidden;">
                     <div class="image-reveal-wrapper" style="border-radius: 0; height: 300px;">
                         <img src="images/BUCKCREST HAVENS EMERALD ESTATE/4 BEDROOM DETACHED DUPLEX  (1).jpg" alt="Emerald Estate" style="width: 100%; height: 100%; object-fit: cover;">
@@ -519,6 +553,20 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span style="font-weight: 700; font-size: 1.2rem;">₦8.5M+</span>
                             <a href="properties.html?estate=Jordan%20Valley" class="text-gold" style="font-size: 0.8rem; font-weight: 600;">VIEW DETAILS →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal" style="padding: 0; overflow: hidden;">
+                    <div class="image-reveal-wrapper" style="border-radius: 0; height: 300px;">
+                        <img src="images/ivory_tower.png" alt="Ivory Tower" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="padding: 30px;">
+                        <span class="text-gold" style="font-size: 0.8rem; font-weight: 600;">KUJE, ABUJA</span>
+                        <h3 style="margin: 10px 0;">Ivory Tower</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px;">Contemporary luxury estate with 15% pre-launch discounts in Kuje.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 1.2rem;">₦3.4M+</span>
+                            <a href="properties.html?estate=Ivory%20Tower" class="text-gold" style="font-size: 0.8rem; font-weight: 600;">VIEW DETAILS →</a>
                         </div>
                     </div>
                 </div>
