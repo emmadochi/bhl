@@ -14,14 +14,14 @@ const properties = [
     },
     {
         id: 2,
-        title: "Peridot Estate",
-        location: "Kuje, Abuja",
-        badge: "KUJE",
-        price: "₦35,000,000",
-        beds: 3,
-        baths: 4,
-        cars: 2,
-        type: "Apartment",
+        title: "Peridot Estate (5 Bed Fully)",
+        location: "Lifecamp, Abuja",
+        badge: "LIFECAMP",
+        price: "₦210,000,000",
+        beds: 5,
+        baths: 6,
+        cars: 3,
+        type: "Fully Detached Duplex",
         estate: "Peridot",
         image: "images/BUCKCREST HAVENS PERIDOT ESTATE/IMG-20241007-WA0004.jpg"
     },
@@ -192,6 +192,32 @@ const properties = [
         type: "Block of Flats",
         estate: "HighLand City",
         image: "images/KABUSA PROTOTYPE/BLOCK OF FLAT.jpg"
+    },
+    {
+        id: 16,
+        title: "Peridot Estate (5 Bed Semi)",
+        location: "Lifecamp, Abuja",
+        badge: "LIFECAMP",
+        price: "₦180,000,000",
+        beds: 5,
+        baths: 6,
+        cars: 3,
+        type: "Semi-Detached Duplex",
+        estate: "Peridot",
+        image: "images/BUCKCREST HAVENS PERIDOT ESTATE/IMG-20241007-WA0005.jpg"
+    },
+    {
+        id: 17,
+        title: "Peridot Estate (5 Bed Terrace)",
+        location: "Lifecamp, Abuja",
+        badge: "LIFECAMP",
+        price: "₦170,000,000",
+        beds: 5,
+        baths: 6,
+        cars: 3,
+        type: "Terrace Duplex",
+        estate: "Peridot",
+        image: "images/BUCKCREST HAVENS PERIDOT ESTATE/IMG-20241007-WA0008.jpg"
     }
 ];
 
