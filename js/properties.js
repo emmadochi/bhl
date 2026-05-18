@@ -23,7 +23,7 @@ const properties = [
         cars: 2,
         type: "Apartment",
         estate: "Peridot",
-        image: "images/BUCKCREST HAVENS PERIDOT ESTATE/IMG-20241007-WA0007.jpg"
+        image: "images/BUCKCREST HAVENS PERIDOT ESTATE/IMG-20241007-WA0004.jpg"
     },
     {
         id: 3,
@@ -36,7 +36,7 @@ const properties = [
         cars: 4,
         type: "Detached Duplex",
         estate: "Dawaki",
-        image: "images/dAWAKI/4 BED FULLY.jpg"
+        image: "images/KATAMPE EXTENSION PROTOTYPE/4 BED FULL.jpg"
     },
     {
         id: 4,
@@ -48,7 +48,7 @@ const properties = [
         baths: 4,
         type: "Terrace Duplex",
         estate: "HighLand City",
-        image: "images/KABUSA PROTOTYPE/TERRACE 1.jpg"
+        image: "images/KABUSA PROTOTYPE/BLOCK OF FLAT.jpg"
     },
     {
         id: 5,
@@ -86,7 +86,7 @@ const properties = [
         cars: 3,
         type: "Fully Detached Duplex",
         estate: "Jordan Valley",
-        image: "images/jordan_valley.png"
+        image: "images/LUGBE PROTOTYPE/5 BED.jpg"
     },
     {
         id: 8,
@@ -99,7 +99,7 @@ const properties = [
         cars: 3,
         type: "Fully Detached Duplex",
         estate: "Jordan Valley",
-        image: "images/jordan_valley.png"
+        image: "images/LUGBE PROTOTYPE/5 BED.jpg"
     },
     {
         id: 9,
@@ -112,7 +112,7 @@ const properties = [
         cars: 1,
         type: "Terrace Duplex",
         estate: "Ivory Tower",
-        image: "images/ivory_tower.png"
+        image: "images/KUJE PROTOTYPE/KUJE PROTOTYPE.png"
     },
     {
         id: 10,
@@ -125,7 +125,7 @@ const properties = [
         cars: 2,
         type: "Terrace Duplex",
         estate: "Ivory Tower",
-        image: "images/ivory_tower.png"
+        image: "images/KUJE PROTOTYPE/KUJE PROTOTYPE.png"
     },
     {
         id: 11,
@@ -138,7 +138,7 @@ const properties = [
         cars: 3,
         type: "Penthouse Bungalow",
         estate: "Ivory Tower",
-        image: "images/ivory_tower.png"
+        image: "images/KUJE PROTOTYPE/KUJE PROTOTYPE.png"
     },
     {
         id: 12,
@@ -151,7 +151,7 @@ const properties = [
         cars: 3,
         type: "Fully Detached Duplex",
         estate: "Ivory Tower",
-        image: "images/ivory_tower.png"
+        image: "images/KUJE PROTOTYPE/KUJE PROTOTYPE.png"
     }
 ];
 
