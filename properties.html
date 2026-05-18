@@ -362,32 +362,32 @@
             <!-- Filter Bar -->
             <div class="filter-bar reveal">
                 <div class="filter-group">
-                    <select>
-                        <option>All Locations</option>
-                        <option>Lugbe, Abuja</option>
-                        <option>Kuje, Abuja</option>
-                        <option>Dawaki, Abuja</option>
-                        <option>Kabusa, Abuja</option>
+                    <select id="locationFilter">
+                        <option value="all">All Locations</option>
+                        <option value="lugbe">Lugbe, Abuja</option>
+                        <option value="kuje">Kuje, Abuja</option>
+                        <option value="dawaki">Dawaki, Abuja</option>
+                        <option value="kabusa">Kabusa, Abuja</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <select>
-                        <option>Property Type</option>
-                        <option>Detached Duplex</option>
-                        <option>Terrace Duplex</option>
-                        <option>Semi-Detached</option>
-                        <option>Apartment</option>
+                    <select id="typeFilter">
+                        <option value="all">Property Type</option>
+                        <option value="detached duplex">Detached Duplex</option>
+                        <option value="terrace duplex">Terrace Duplex</option>
+                        <option value="semi-detached">Semi-Detached</option>
+                        <option value="apartment">Apartment</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <select>
-                        <option>Price Range</option>
-                        <option>₦20M - ₦50M</option>
-                        <option>₦50M - ₦150M</option>
-                        <option>₦150M+</option>
+                    <select id="priceFilter">
+                        <option value="all">Price Range</option>
+                        <option value="under50">Under ₦50M</option>
+                        <option value="50to150">₦50M - ₦150M</option>
+                        <option value="over150">₦150M+</option>
                     </select>
                 </div>
-                <button class="btn-premium btn-solid">Filter Results</button>
+                <button id="filterBtn" class="btn-premium btn-solid">Filter Results</button>
             </div>
 
             <!-- Property Grid -->
@@ -518,6 +518,54 @@
             }
             
             renderProperties(filteredProps);
+
+            // Functional Filtering
+            const locationFilter = document.getElementById('locationFilter');
+            const typeFilter = document.getElementById('typeFilter');
+            const priceFilter = document.getElementById('priceFilter');
+            const filterBtn = document.getElementById('filterBtn');
+
+            if (filterBtn) {
+                filterBtn.addEventListener('click', () => {
+                    const locVal = locationFilter.value;
+                    const typeVal = typeFilter.value;
+                    const priceVal = priceFilter.value;
+
+                    let items = window.propertyData;
+
+                    // Keep estate filter if applied via URL parameters
+                    if (estateFilter) {
+                        items = items.filter(p => p.estate.toLowerCase() === estateFilter.toLowerCase());
+                    }
+
+                    // Filter by Location
+                    if (locVal !== 'all') {
+                        items = items.filter(p => p.location.toLowerCase().includes(locVal));
+                    }
+
+                    // Filter by Type
+                    if (typeVal !== 'all') {
+                        items = items.filter(p => p.type.toLowerCase().includes(typeVal));
+                    }
+
+                    // Filter by Price Range
+                    if (priceVal !== 'all') {
+                        items = items.filter(p => {
+                            const priceNum = parseInt(p.price.replace(/[^\d]/g, ''), 10);
+                            if (priceVal === 'under50') {
+                                return priceNum < 50000000;
+                            } else if (priceVal === '50to150') {
+                                return priceNum >= 50000000 && priceNum <= 150000000;
+                            } else if (priceVal === 'over150') {
+                                return priceNum > 150000000;
+                            }
+                            return true;
+                        });
+                    }
+
+                    renderProperties(items);
+                });
+            }
         });
     </script>
 </body>

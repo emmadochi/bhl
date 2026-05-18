@@ -74,6 +74,32 @@ const properties = [
         type: "Semi-Detached",
         estate: "Kuje",
         image: "images/hero_mansion.png"
+    },
+    {
+        id: 7,
+        title: "Jordan Valley (4 Bed)",
+        location: "Lugbe, Abuja (Behind NTA Quarters)",
+        badge: "FCDA APPROVED",
+        price: "₦8,500,000",
+        beds: 4,
+        baths: 4,
+        cars: 3,
+        type: "Fully Detached Duplex",
+        estate: "Jordan Valley",
+        image: "images/jordan_valley.png"
+    },
+    {
+        id: 8,
+        title: "Jordan Valley (5 Bed)",
+        location: "Lugbe, Abuja (Behind NTA Quarters)",
+        badge: "FCDA APPROVED",
+        price: "₦9,500,000",
+        beds: 5,
+        baths: 5,
+        cars: 3,
+        type: "Fully Detached Duplex",
+        estate: "Jordan Valley",
+        image: "images/jordan_valley.png"
     }
 ];
 

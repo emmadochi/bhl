@@ -214,6 +214,16 @@
             gap: 30px;
         }
 
+        .grid-4-cols {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1200px) {
+            .grid-4-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .feature-card {
             padding: 50px;
             border-radius: 20px;
@@ -395,7 +405,7 @@
                 <h2 style="font-size: 3rem;">Our <span class="text-gold">Estates</span></h2>
                 <p>Discover our master-planned communities across prime locations.</p>
             </div>
-            <div class="property-grid-alt">
+            <div class="property-grid-alt grid-4-cols">
                 <!-- Emerald Card -->
                 <div class="estate-card-premium reveal">
                     <div class="estate-img-wrapper">
@@ -432,6 +442,18 @@
                         <a href="properties.html?estate=Dawaki" class="estate-link-gold">Explore Estate <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+                <!-- Jordan Valley Card -->
+                <div class="estate-card-premium reveal">
+                    <div class="estate-img-wrapper">
+                        <img src="images/jordan_valley.png" alt="Jordan Valley">
+                    </div>
+                    <div class="estate-info-premium">
+                        <span class="estate-tag">LUGBE</span>
+                        <h3 class="estate-title-dark">Jordan Valley</h3>
+                        <p class="estate-desc-dark">A premium, FCDA approved master-planned residential community featuring modern 4 & 5-bedroom detached duplexes.</p>
+                        <a href="properties.html?estate=Jordan%20Valley" class="estate-link-gold">Explore Estate <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -443,7 +465,7 @@
                 <h2 style="font-size: 3rem;">Featured <span class="text-gold">Properties</span></h2>
                 <p style="color: var(--text-gray);">Invest in properties that offer guaranteed ROI and unmatched luxury.</p>
             </div>
-            <div class="property-grid-alt">
+            <div class="property-grid-alt grid-4-cols">
                 <div class="glass-card reveal" style="padding: 0; overflow: hidden;">
                     <div class="image-reveal-wrapper" style="border-radius: 0; height: 300px;">
                         <img src="images/BUCKCREST HAVENS EMERALD ESTATE/4 BEDROOM DETACHED DUPLEX  (1).jpg" alt="Emerald Estate" style="width: 100%; height: 100%; object-fit: cover;">
@@ -483,6 +505,20 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span style="font-weight: 700; font-size: 1.2rem;">₦120M</span>
                             <a href="properties.html" class="text-gold" style="font-size: 0.8rem; font-weight: 600;">VIEW DETAILS →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal" style="padding: 0; overflow: hidden;">
+                    <div class="image-reveal-wrapper" style="border-radius: 0; height: 300px;">
+                        <img src="images/jordan_valley.png" alt="Jordan Valley" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="padding: 30px;">
+                        <span class="text-gold" style="font-size: 0.8rem; font-weight: 600;">LUGBE, ABUJA</span>
+                        <h3 style="margin: 10px 0;">Jordan Valley</h3>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px;">Ultra-modern FCDA-approved 4 & 5 Bed Fully Detached Duplexes.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 1.2rem;">₦8.5M+</span>
+                            <a href="properties.html?estate=Jordan%20Valley" class="text-gold" style="font-size: 0.8rem; font-weight: 600;">VIEW DETAILS →</a>
                         </div>
                     </div>
                 </div>
