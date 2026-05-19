@@ -191,4 +191,181 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setInterval(nextSlide, slideInterval);
     }
+
+    // ==========================================================================
+    // Calendar Modal Injection and Generation Engine
+    // ==========================================================================
+
+    let currentDate = new Date(2026, 4, 19); // Today simulated: May 19, 2026
+    let displayedMonth = 4; // May
+    let displayedYear = 2026;
+
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    // Global click listener for delegation
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-premium, .btn-solid, button, a');
+        if (btn && (btn.textContent.trim().toLowerCase() === 'book consultation' || btn.textContent.trim().toLowerCase() === 'book inspection')) {
+            e.preventDefault();
+            openCalendarModal();
+        }
+    });
+
+    function openCalendarModal() {
+        let modal = document.getElementById('calendarModal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'calendarModal';
+            modal.className = 'calendar-modal';
+            modal.innerHTML = `
+                <div class="calendar-modal-content glass-card">
+                    <button class="calendar-close" id="closeCalendarBtn"><i class="fas fa-times"></i></button>
+                    <h2 class="calendar-modal-title">Select Inspection Date</h2>
+                    <div class="calendar-header">
+                        <button class="calendar-btn" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="currentMonthYear">May 2026</h3>
+                        <button class="calendar-btn" id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-grid" id="calendarDaysGrid">
+                        <div class="calendar-day-name">Sun</div>
+                        <div class="calendar-day-name">Mon</div>
+                        <div class="calendar-day-name">Tue</div>
+                        <div class="calendar-day-name">Wed</div>
+                        <div class="calendar-day-name">Thu</div>
+                        <div class="calendar-day-name">Fri</div>
+                        <div class="calendar-day-name">Sat</div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Bind inner click events
+            document.getElementById('closeCalendarBtn').addEventListener('click', closeCalendarModal);
+            document.getElementById('prevMonthBtn').addEventListener('click', () => changeMonth(-1));
+            document.getElementById('nextMonthBtn').addEventListener('click', () => changeMonth(1));
+            
+            // Close on clicking backdrop
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeCalendarModal();
+                }
+            });
+        }
+
+        // Reset to default starting month/year
+        displayedMonth = 4;
+        displayedYear = 2026;
+        renderCalendar();
+
+        // Show modal with transition
+        setTimeout(() => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, 10);
+    }
+
+    function closeCalendarModal() {
+        const modal = document.getElementById('calendarModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function changeMonth(direction) {
+        displayedMonth += direction;
+        if (displayedMonth < 0) {
+            displayedMonth = 11;
+            displayedYear--;
+        } else if (displayedMonth > 11) {
+            displayedMonth = 0;
+            displayedYear++;
+        }
+        renderCalendar();
+    }
+
+    function renderCalendar() {
+        const monthYearLabel = document.getElementById('currentMonthYear');
+        const grid = document.getElementById('calendarDaysGrid');
+        
+        if (!monthYearLabel || !grid) return;
+
+        monthYearLabel.textContent = `${monthNames[displayedMonth]} ${displayedYear}`;
+
+        // Clear existing day numbers
+        const dayNames = grid.querySelectorAll('.calendar-day-name');
+        grid.innerHTML = '';
+        dayNames.forEach(dn => grid.appendChild(dn));
+
+        // Start index and total days of the month
+        const firstDayIndex = new Date(displayedYear, displayedMonth, 1).getDay();
+        const totalDays = new Date(displayedYear, displayedMonth + 1, 0).getDate();
+
+        // Spacers for first week padding
+        for (let i = 0; i < firstDayIndex; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'calendar-day disabled';
+            grid.appendChild(emptyCell);
+        }
+
+        // Generate day numbers
+        const today = new Date(2026, 4, 19); // Static system date
+
+        for (let day = 1; day <= totalDays; day++) {
+            const dayCell = document.createElement('div');
+            dayCell.className = 'calendar-day';
+            dayCell.textContent = day;
+
+            const thisDate = new Date(displayedYear, displayedMonth, day);
+            
+            // Check if thisDate is in the past
+            if (thisDate < today && !(thisDate.getFullYear() === today.getFullYear() && thisDate.getMonth() === today.getMonth() && thisDate.getDate() === today.getDate())) {
+                dayCell.classList.add('disabled');
+            } else {
+                // Highlight today
+                if (displayedYear === today.getFullYear() && displayedMonth === today.getMonth() && day === today.getDate()) {
+                    dayCell.classList.add('active');
+                }
+                
+                // Clicking selects date and redirects
+                dayCell.addEventListener('click', () => {
+                    const formattedDate = `${displayedYear}-${String(displayedMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    closeCalendarModal();
+                    
+                    setTimeout(() => {
+                        window.location.href = `booking.html?date=${formattedDate}`;
+                    }, 200);
+                });
+            }
+            grid.appendChild(dayCell);
+        }
+    }
+
+    // ==========================================================================
+    // FAQ Accordion Interactivity
+    // ==========================================================================
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            const answer = item.querySelector('.faq-answer');
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQs for clean single-accordion behavior
+            document.querySelectorAll('.faq-item').forEach(el => {
+                el.classList.remove('active');
+                const ans = el.querySelector('.faq-answer');
+                if (ans) ans.style.maxHeight = null;
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
 });
+

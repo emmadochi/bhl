@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Inspection | BHL Properties</title>
+    <meta name="description" content="Schedule a luxury property inspection with Buckcrest Havens Ltd. Select your preferred estate, date, and inspection details.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #0A0A0A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .preloader-logo {
+            height: 80px;
+            margin-bottom: 30px;
+            filter: brightness(1.2);
+        }
+
+        .preloader-bar {
+            width: 150px;
+            height: 2px;
+            background: rgba(250, 204, 126, 0.1);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preloader-progress {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #facc7e;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="logo.png" alt="BHL Logo" class="preloader-logo">
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="scrolled">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="BHL Logo">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="nav-btns">
+                        <button class="btn-premium btn-solid">Book Inspection</button>
+                    </div>
+                    <div class="menu-toggle" id="menuToggle" style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary-gold); margin-left: 20px;">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--bg-black); z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s ease; padding: 40px;">
+        <div class="close-menu" id="closeMenu" style="position: absolute; top: 30px; right: 30px; font-size: 2rem; color: var(--primary-gold); cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul style="text-align: center; display: flex; flex-direction: column; gap: 30px; font-size: 1.1rem;">
+            <li><a href="index.html" class="mobile-link">Home</a></li>
+            <li><a href="about.html" class="mobile-link">About</a></li>
+            <li><a href="properties.html" class="mobile-link">Properties</a></li>
+            <li><a href="contact.html" class="mobile-link">Contact</a></li>
+        </ul>
+        <button class="btn-premium btn-solid" style="margin-top: 50px;">Book Inspection</button>
+    </div>
+
+    <!-- Booking Main Content -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-grid">
+                
+                <!-- Left Column: Booking Form -->
+                <div class="booking-form-card glass-card reveal">
+                    <div class="booking-date-badge" id="selectedDateBadge">
+                        <i class="far fa-calendar-alt"></i>
+                        <span id="friendlyDateText">Loading selected date...</span>
+                    </div>
+                    
+                    <h2 style="color: var(--primary-gold); margin-bottom: 30px;">Input Order Details</h2>
+                    
+                    <form id="inspectionForm">
+                        <div class="booking-form-grid">
+                            
+                            <!-- Estate Selector -->
+                            <div class="booking-input-group">
+                                <label for="estateSelect">Select Estate</label>
+                                <select id="estateSelect" class="booking-select" required>
+                                    <option value="" disabled selected>Choose an Estate...</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Property Selector (Cascaded) -->
+                            <div class="booking-input-group">
+                                <label for="propertySelect">Select Property</label>
+                                <select id="propertySelect" class="booking-select" required disabled>
+                                    <option value="" disabled selected>Please select an Estate first...</option>
+                                </select>
+                            </div>
+
+                            <!-- Preferred Inspection Time Slot -->
+                            <div class="booking-input-group booking-form-full">
+                                <label for="timeSelect">Time for Inspection</label>
+                                <select id="timeSelect" class="booking-select" required>
+                                    <option value="" disabled selected>Choose Inspection Time...</option>
+                                    <option value="Morning Session (9:00 AM - 12:00 PM)">Morning Session (9:00 AM - 12:00 PM)</option>
+                                    <option value="Midday Session (12:00 PM - 3:00 PM)">Midday Session (12:00 PM - 3:00 PM)</option>
+                                    <option value="Afternoon Session (3:00 PM - 6:00 PM)">Afternoon Session (3:00 PM - 6:00 PM)</option>
+                                </select>
+                            </div>
+
+                            <!-- Client Info Section -->
+                            <h3 class="booking-form-full" style="color: var(--primary-gold); margin: 20px 0 10px 0; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">Personal Contact Details</h3>
+
+                            <div class="booking-input-group">
+                                <label for="clientName">Full Name</label>
+                                <input type="text" id="clientName" class="booking-input" placeholder="e.g. John Doe" required>
+                            </div>
+
+                            <div class="booking-input-group">
+                                <label for="clientEmail">Email Address</label>
+                                <input type="email" id="clientEmail" class="booking-input" placeholder="e.g. johndoe@gmail.com" required>
+                            </div>
+
+                            <div class="booking-input-group">
+                                <label for="clientPhone">Telephone Number</label>
+                                <input type="tel" id="clientPhone" class="booking-input" placeholder="e.g. 08035353933" required>
+                            </div>
+
+                            <div class="booking-input-group">
+                                <label for="clientWhatsapp">WhatsApp Number</label>
+                                <input type="tel" id="clientWhatsapp" class="booking-input" placeholder="e.g. 08035353933">
+                            </div>
+
+                            <div class="booking-input-group booking-form-full">
+                                <label for="clientNotes">Special Instructions or Order Details</label>
+                                <textarea id="clientNotes" class="booking-textarea" rows="4" placeholder="Any specific requirements or details you'd like to share regarding your inspection visit..."></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="booking-form-full" style="margin-top: 20px;">
+                                <button type="submit" class="btn-premium btn-solid" style="width: 100%; py: 20px;">Confirm & Submit Form</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right Column: Interactive Property Preview -->
+                <div class="booking-preview-card glass-card reveal">
+                    <h3 style="color: var(--primary-gold); text-align: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; margin-bottom: 0;">Selected Property Spec</h3>
+                    
+                    <div id="previewEmptyState" style="text-align: center; padding: 50px 20px; color: var(--text-gray);">
+                        <i class="fas fa-home" style="font-size: 3rem; margin-bottom: 15px; color: rgba(250, 204, 126, 0.3);"></i>
+                        <p>No property selected yet. Select an estate and property to view live details.</p>
+                    </div>
+
+                    <div id="previewActiveState" style="display: none;">
+                        <div class="booking-preview-img-container">
+                            <img id="previewImg" src="" alt="Property Preview" class="booking-preview-img">
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <span id="previewBadge" class="text-gold" style="font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">PREMIUM</span>
+                            <h3 id="previewTitle" style="margin: 5px 0 10px 0; font-size: 1.2rem;">Property Title</h3>
+                            <p style="color: var(--primary-gold); font-size: 1.3rem; font-weight: 700; font-family: 'Outfit', sans-serif; margin-bottom: 10px;" id="previewPrice">₦0.00</p>
+                            <p style="color: var(--text-gray); font-size: 0.9rem;" id="previewLocation"><i class="fas fa-map-marker-alt" style="color: var(--primary-gold); margin-right: 5px;"></i> Location, Abuja</p>
+                        </div>
+
+                        <div class="booking-preview-specs">
+                            <div class="booking-preview-spec-item">
+                                <i class="fas fa-bed"></i>
+                                <span id="previewBeds">0</span>
+                                Beds
+                            </div>
+                            <div class="booking-preview-spec-item">
+                                <i class="fas fa-bath"></i>
+                                <span id="previewBaths">0</span>
+                                Baths
+                            </div>
+                            <div class="booking-preview-spec-item" id="previewCarWrapper">
+                                <i class="fas fa-car"></i>
+                                <span id="previewCars">0</span>
+                                Parking
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal Overlay -->
+    <div class="success-modal" id="successModal">
+        <div class="success-card glass-card">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2>Booking Successful</h2>
+            <p style="color: var(--text-gray);">Thank you! Your inspection schedule has been locked in and saved successfully.</p>
+            
+            <div class="success-details">
+                <div class="success-detail-row">
+                    <span class="success-label">Inspection Date:</span>
+                    <span class="success-value" id="successDate">Wednesday, May 20, 2026</span>
+                </div>
+                <div class="success-detail-row">
+                    <span class="success-label">Time Slot:</span>
+                    <span class="success-value" id="successTime">Morning Session</span>
+                </div>
+                <div class="success-detail-row">
+                    <span class="success-label">Selected Property:</span>
+                    <span class="success-value" id="successProperty">Emerald Detached Duplex</span>
+                </div>
+                <div class="success-detail-row">
+                    <span class="success-label">Price:</span>
+                    <span class="success-value text-gold" id="successPrice">₦95,000,000</span>
+                </div>
+                <div class="success-detail-row">
+                    <span class="success-label">Client Name:</span>
+                    <span class="success-value" id="successName">John Doe</span>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <button id="sendWhatsappBtn" class="btn-premium btn-solid" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fab fa-whatsapp"></i> Send to Whatsapp
+                </button>
+                <button id="closeSuccessBtn" class="btn-premium" style="width: 100%;">
+                    Return to Homepage
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="logo.png" alt="BHL Logo" style="height: 60px; margin-bottom: 20px; filter: brightness(1.2);">
+                    <p style="color: var(--text-gray); font-size: 0.95rem; margin-bottom: 25px;">
+                        Providing state of the art luxury architectural and real estate masterpiece investments within the Federal Capital Territory.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Buckcresthavens" target="_blank" class="text-gold"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/buckcresthavensltd/" target="_blank" class="text-gold"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/2348035353933" target="_blank" class="text-gold"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Headquarters</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 15px;">
+                        Suite D3, HCR Plaza Sylvester Ugoh Crescent, Jabi, Abuja
+                    </p>
+                    <ul class="footer-links">
+                        <li><a href="tel:+2348035353933"><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--primary-gold);"></i> 0803 535 3933</a></li>
+                        <li><a href="tel:+2349057999258"><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--primary-gold);"></i> 0905 799 9258</a></li>
+                        <li><a href="mailto:info@buckcresthavensltd.org"><i class="fas fa-envelope" style="margin-right: 10px; color: var(--primary-gold);"></i> info@buckcresthavensltd.org</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Subscribe to receive the latest investment opportunities.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Buckcrest Haven's Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2348035353933?text=Hello%20BHL%20Properties,%20I'm%20interested%20in%20your%20real%20estate%20solutions." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Central Data Source -->
+    <script src="js/properties.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Page Specific Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Process Date Parameter from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            let selectedDateStr = urlParams.get('date');
+            
+            // Reference tomorrow's date if no date passed
+            if (!selectedDateStr) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                selectedDateStr = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}`;
+            }
+
+            // Convert date parameter to friendly user-readable format
+            const parsedDate = new Date(selectedDateStr);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const friendlyDateText = parsedDate.toLocaleDateString('en-US', options) !== 'Invalid Date' 
+                ? parsedDate.toLocaleDateString('en-US', options) 
+                : selectedDateStr;
+
+            document.getElementById('friendlyDateText').textContent = friendlyDateText;
+
+            // 2. Cascade Selectors Logic Linked to properties.js
+            const estateSelect = document.getElementById('estateSelect');
+            const propertySelect = document.getElementById('propertySelect');
+            
+            const previewEmptyState = document.getElementById('previewEmptyState');
+            const previewActiveState = document.getElementById('previewActiveState');
+            const previewImg = document.getElementById('previewImg');
+            const previewBadge = document.getElementById('previewBadge');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewPrice = document.getElementById('previewPrice');
+            const previewLocation = document.getElementById('previewLocation');
+            const previewBeds = document.getElementById('previewBeds');
+            const previewBaths = document.getElementById('previewBaths');
+            const previewCars = document.getElementById('previewCars');
+            const previewCarWrapper = document.getElementById('previewCarWrapper');
+
+            // Gather Unique Estates dynamically from properties
+            if (window.propertyData && window.propertyData.length > 0) {
+                const uniqueEstates = [...new Set(window.propertyData.map(item => item.estate))];
+                
+                uniqueEstates.forEach(estate => {
+                    if (estate) {
+                        const opt = document.createElement('option');
+                        opt.value = estate;
+                        opt.textContent = estate + " Estate";
+                        estateSelect.appendChild(opt);
+                    }
+                });
+            }
+
+            // Listen to Estate Selection Change
+            estateSelect.addEventListener('change', () => {
+                const selectedEstate = estateSelect.value;
+                
+                // Clear out property select
+                propertySelect.innerHTML = '<option value="" disabled selected>Select Property...</option>';
+                propertySelect.disabled = false;
+
+                // Filter matching properties
+                const filtered = window.propertyData.filter(item => item.estate === selectedEstate);
+                
+                filtered.forEach(prop => {
+                    const opt = document.createElement('option');
+                    opt.value = prop.id;
+                    opt.textContent = `${prop.title} — (${prop.price})`;
+                    propertySelect.appendChild(opt);
+                });
+
+                // Reset preview state
+                previewActiveState.style.display = 'none';
+                previewEmptyState.style.display = 'block';
+            });
+
+            // Listen to Property Selection Change
+            propertySelect.addEventListener('change', () => {
+                const selectedPropId = parseInt(propertySelect.value);
+                const propertyObj = window.propertyData.find(item => item.id === selectedPropId);
+
+                if (propertyObj) {
+                    // Update preview block
+                    previewImg.src = propertyObj.image;
+                    previewImg.alt = propertyObj.title;
+                    previewBadge.textContent = propertyObj.badge || propertyObj.type;
+                    previewTitle.textContent = propertyObj.title;
+                    previewPrice.textContent = propertyObj.price;
+                    previewLocation.innerHTML = `<i class="fas fa-map-marker-alt" style="color: var(--primary-gold); margin-right: 5px;"></i> ${propertyObj.location}`;
+                    
+                    previewBeds.textContent = propertyObj.beds || 'N/A';
+                    previewBaths.textContent = propertyObj.baths || 'N/A';
+                    
+                    if (propertyObj.cars) {
+                        previewCars.textContent = propertyObj.cars;
+                        previewCarWrapper.style.display = 'flex';
+                    } else {
+                        previewCarWrapper.style.display = 'none';
+                    }
+
+                    // Render view
+                    previewEmptyState.style.display = 'none';
+                    previewActiveState.style.display = 'block';
+
+                    // Smooth fade-in preview using GSAP
+                    gsap.fromTo('#previewActiveState', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 });
+                }
+            });
+
+            // 3. Form Submission Handler
+            const form = document.getElementById('inspectionForm');
+            const successModal = document.getElementById('successModal');
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Gather details
+                const clientName = document.getElementById('clientName').value;
+                const clientEmail = document.getElementById('clientEmail').value;
+                const clientPhone = document.getElementById('clientPhone').value;
+                const clientWhatsapp = document.getElementById('clientWhatsapp').value || 'Not provided';
+                const timeSlot = document.getElementById('timeSelect').value;
+                const estateName = estateSelect.value;
+                const selectedPropId = parseInt(propertySelect.value);
+                const propertyObj = window.propertyData.find(item => item.id === selectedPropId);
+                const clientNotes = document.getElementById('clientNotes').value || 'No special requirements.';
+
+                // Store in Booking details array
+                const bookingData = {
+                    date: selectedDateStr,
+                    friendlyDate: friendlyDateText,
+                    time: timeSlot,
+                    estate: estateName,
+                    propertyTitle: propertyObj ? propertyObj.title : 'Unknown Property',
+                    propertyPrice: propertyObj ? propertyObj.price : 'N/A',
+                    clientName: clientName,
+                    clientEmail: clientEmail,
+                    clientPhone: clientPhone,
+                    clientWhatsapp: clientWhatsapp,
+                    notes: clientNotes,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Save to localStorage
+                let bookings = JSON.parse(localStorage.getItem('bhl_bookings') || '[]');
+                bookings.push(bookingData);
+                localStorage.setItem('bhl_bookings', JSON.stringify(bookings));
+
+                // Populate success modal
+                document.getElementById('successDate').textContent = friendlyDateText;
+                document.getElementById('successTime').textContent = timeSlot;
+                document.getElementById('successProperty').textContent = bookingData.propertyTitle;
+                document.getElementById('successPrice').textContent = bookingData.propertyPrice;
+                document.getElementById('successName').textContent = clientName;
+
+                // Show success modal
+                successModal.classList.add('active');
+
+                // Bind whatsapp direct click
+                document.getElementById('sendWhatsappBtn').onclick = () => {
+                    const whatsappMsg = `Hello Buckcrest Havens,%0A%0AI would like to book a site inspection with the following details:%0A%0A` +
+                        `*Date:* ${friendlyDateText}%0A` +
+                        `*Time Slot:* ${timeSlot}%0A` +
+                        `*Estate:* ${estateName} Estate%0A` +
+                        `*Property:* ${bookingData.propertyTitle}%0A` +
+                        `*Price:* ${bookingData.propertyPrice}%0A%0A` +
+                        `*Client Name:* ${clientName}%0A` +
+                        `*Phone:* ${clientPhone}%0A` +
+                        `*WhatsApp:* ${clientWhatsapp}%0A` +
+                        `*Special Notes:* ${clientNotes}`;
+                    const waLink = `https://wa.me/2348035353933?text=${whatsappMsg}`;
+                    window.open(waLink, '_blank');
+                };
+            });
+
+            // Close success modal button
+            document.getElementById('closeSuccessBtn').addEventListener('click', () => {
+                successModal.classList.remove('active');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>
